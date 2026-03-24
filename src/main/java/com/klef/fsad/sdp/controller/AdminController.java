@@ -29,7 +29,7 @@ private final CustomerRepository customerRepository;
   public String Index() {
     return "Full Stack SDP Project";
   }
-  @PostMapping("/verifyadminlogin")
+  @PostMapping("/login")
   public ResponseEntity<?> checkadminlogin(@RequestBody Admin admin) {
     try {
       Admin a=adminService.verifyAdminLogin(admin.getUsername(),admin.getPassword());

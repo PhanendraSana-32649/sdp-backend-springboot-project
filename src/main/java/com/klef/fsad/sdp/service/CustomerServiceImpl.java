@@ -5,15 +5,35 @@ import org.springframework.stereotype.Service;
 
 import com.klef.fsad.sdp.entity.Customer;
 import com.klef.fsad.sdp.repository.CustomerRepository;
+
 @Service
-public class CustomerServiceImpl implements CustomerService
-{
-	@Autowired
-	private CustomerRepository customerRepository;
+public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Override
+    public Customer verifyCustomerLogin(String email, String pwd)
+    {
+        return customerRepository.findByEmailAndPassword(email, pwd);
+    }
+
+    public String updatecustomerprofile(Customer customer)
+    {
+        customerRepository.save(customer);
+        return "Customer Profile Updated Successfully";
+    }
+
+    public String customerRegistration(Customer customer)
+    {
+        customerRepository.save(customer);
+        return "Customer Registered Successfully";
+    }
 
 	@Override
-	public Customer verifyCustomerLogin(String email, String pwd) {
-		return customerRepository.findByEmailAndPassword(email, pwd);
+	public String customerRegistrationString(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -21,6 +41,4 @@ public class CustomerServiceImpl implements CustomerService
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
 }
